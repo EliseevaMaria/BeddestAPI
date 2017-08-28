@@ -8,8 +8,25 @@ namespace Models
 {
     public class ModeDTO
     {
-        public int Id;
-        public string Name;
+        public int ModeId { get; set; }
+        
+        public string Name { get; set; }
+
+        public int HeadHeight { get; set; }
+
+        public int HeadTilt { get; set; }
+
+        public int HeadHardness { get; set; }
+
+        public int LegsHeight { get; set; }
+
+        public int LegsTilt { get; set; }
+
+        public int LegsHardness { get; set; }
+
+        public int OtherHeight { get; set; }
+
+        public int OtherHardness { get; set; }
 
         public ModeDTO()
         {
@@ -18,8 +35,21 @@ namespace Models
 
         public ModeDTO(int id, string name)
         {
-            Id = id;
+            ModeId = id;
             Name = name;
+        }
+        public ModeDTO(int modeId, string name, int headHeight, int headTilt, int headHardness, int legHeight, int legTilt, int legHardness, int otherHeight, int otherHardness)
+        {
+            ModeId = modeId;
+            Name = name;
+            HeadHeight = headHeight;
+            HeadTilt = headTilt;
+            HeadHardness = headHardness;
+            LegsHeight = legHeight;
+            LegsTilt = legTilt;
+            LegsHardness = legHardness;
+            OtherHeight = otherHeight;
+            OtherHardness = otherHardness;
         }
 
         /*public ModeDTO(Mode mode)

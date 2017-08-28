@@ -10,27 +10,51 @@ namespace BeddestDAL
 {
     public class BedDataAccess
     {
-        public static List<Beds> GetBeds(int userId)
+        public static List<Bed> GetAllBeds()
         {
-            List<Beds> result;
+            List<Bed> result;
+            using (var context = new BeddestModel())
+            {
+                context.Beds.Load();
+                result = context.Beds.ToList();
+            }
+            return result;
+        }
+
+        public static List<Bed> GetBeds(int userId)
+        {
+            List<Bed> result;
             using (var context = new BeddestModel())
             {
                 context.Beds.Load();
                 result = (from bed in context.Beds
                           where bed.UserId == userId
-                          select bed).ToList();            
+                          select bed).ToList();
             }
             return result;
         }
-        
-        public static Beds GetBed(int bedId)
+
+        public static Bed GetBed(int bedId)
         {
-            Beds result;
+            Bed result;
             using (var context = new BeddestModel())
             {
                 context.Beds.Load();
                 result = (from bed in context.Beds
-                          where bed.Id == bedId
+                          where bed.BedId == bedId
+                          select bed).FirstOrDefault();
+            }
+            return result;
+        }
+
+        public static Bed GetBedByBlock(int blockId)
+        {
+            Bed result;
+            using (var context = new BeddestModel())
+            {
+                context.Beds.Load();
+                result = (from bed in context.Beds
+                          where bed.Blocks.Select(x => x.BlockId).Contains(blockId)
                           select bed).FirstOrDefault();
             }
             return result;
@@ -66,7 +90,7 @@ namespace BeddestDAL
 
         public static bool BedRegistered(int bedId)
         {
-            Beds bedFound;
+            Bed bedFound;
             using (var context = new BeddestModel())
             {
                 context.Beds.Load();
@@ -75,12 +99,35 @@ namespace BeddestDAL
             return bedFound != null;
         }
 
-        public static void AddBed(Beds bed)
+        public static int AddBed(Bed bed)
         {
+            int newId;
             using (var context = new BeddestModel())
             {
                 context.Beds.Load();
                 context.Beds.Add(bed);
+                context.Entry(bed).State = System.Data.Entity.EntityState.Added;
+
+                context.SaveChanges();
+
+                newId = context.Beds.ToList().Last().BedId;
+                var bedToChange = context.Beds.Find(newId);
+                if (bedToChange != null)
+                {
+                    bedToChange.Name = "Bed" + newId.ToString();
+                    context.SaveChanges();
+                }
+            }
+            return newId;
+        }
+
+        public static void RemoveBed(int bedId)
+        {
+            using (var context = new BeddestModel())
+            {
+                context.Beds.Load();
+                Bed bedToRemove = context.Beds.Find(bedId);
+                context.Beds.Remove(bedToRemove);
                 context.SaveChanges();
             }
         }

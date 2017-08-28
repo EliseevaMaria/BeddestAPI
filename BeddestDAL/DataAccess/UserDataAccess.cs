@@ -10,9 +10,9 @@ namespace BeddestDAL
 {
     public static class UserDataAccess
     {
-        public static Users FindUser(string name, string password)
+        public static User FindUser(string name, string password)
         {
-            Users result;
+            User result;
             using (var context = new BeddestModel())
             {
                 context.Users.Load();
@@ -31,14 +31,14 @@ namespace BeddestDAL
             using (var context = new BeddestModel())
             {
                 context.Users.Load();
-                context.Users.Add(new Users(userName, password));
+                context.Users.Add(new User(userName, password));
                 context.SaveChanges();
             }
         }
 
         public static bool CheckUserExists(string userName)
         {
-            Users userFound;
+            User userFound;
             using (var context = new BeddestModel())
             {
                 context.Users.Load();

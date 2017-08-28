@@ -1,22 +1,16 @@
 namespace BeddestDAL
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Models;
 
-    public partial class Beds
+    public partial class Bed
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Beds()
-        {
-            Blocks = new HashSet<Blocks>();
-        }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        [Key]
+        public int BedId { get; set; }
 
         public int UserId { get; set; }
 
@@ -30,15 +24,30 @@ namespace BeddestDAL
 
         public int StopHeatingTime { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Blocks> Blocks { get; set; }
+        public virtual List<Block> Blocks { get; set; }
+
+        public virtual List<Device> Device { get; set; }
 
 
-        public Beds(int id, int userId, string name, int temp = 23, DateTime alarmTime = new DateTime(), int stopHeatingTime = 5)
+        public Bed()
         {
-            Id = id;
+
+        }
+
+        public Bed(int userId, int temp = 23, DateTime alarmTime = new DateTime(), int stopHeatingTime = 5)
+        {
+            UserId = userId;
+            Name = "Bed";
+            Temperature = temp;
+            AlarmTime = alarmTime == new DateTime() ? new DateTime(2001, 1, 1, 0, 0, 0) : alarmTime;
+            StopHeatingTime = stopHeatingTime;
+        }
+
+        public Bed(int id, int userId, string name, int temp = 23, DateTime alarmTime = new DateTime(), int stopHeatingTime = 5)
+        {
+            BedId = id;
             UserId = userId;
             Name = name;
             Temperature = temp;
@@ -48,7 +57,7 @@ namespace BeddestDAL
 
         public BedDTO ToDto(int[] blockIds)
         {
-            return new BedDTO(Id, Name, Temperature, AlarmTime, StopHeatingTime, blockIds);
+            return new BedDTO(BedId, Name, Temperature, AlarmTime, StopHeatingTime, blockIds);
         }
     }
 }

@@ -1,22 +1,19 @@
 ﻿using BusinessLayer;
-using System;
+using Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace BeddestWebApi.Controllers
 {
     [EnableCors("*", "*", "*")]
-    public class HomeController : ApiController
+    public class DeviceController : ApiController
     {
         [HttpGet]
-        public string Index()
+        public List<DeviceDTO> GetDevices()
         {
-            CtrlToDal.StartReceiving();
-            return "qwer";
+            List<DeviceDTO> result = CtrlToDal.GetDevices();
+            return result;
         }
     }
 }

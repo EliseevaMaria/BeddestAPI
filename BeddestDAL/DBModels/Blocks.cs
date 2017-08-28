@@ -1,16 +1,15 @@
 namespace BeddestDAL
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Models;
 
-    public partial class Blocks
+    public partial class Block
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int BlockId { get; set; }
 
         public int BedId { get; set; }
 
@@ -22,12 +21,10 @@ namespace BeddestDAL
 
         public int HardnessLevel { get; set; }
 
-        public virtual Beds Beds { get; set; }
-
-
-        public Blocks(int id, int bedId, int hardnessLevel)
+        public virtual Bed Bed { get; set; }
+        
+        public Block(int bedId, int hardnessLevel)
         {
-            Id = id;
             BedId = bedId;
             Height = 0;
             TiltAngle = 0;
@@ -35,14 +32,14 @@ namespace BeddestDAL
             Hardness = HardnessLevel * 20 - 10;
         }
 
-        public Blocks()
+        public Block()
         {
 
         }
 
-        public Blocks(BlockDTO dto)
+        public Block(BlockDTO dto)
         {
-            Id = dto.Id;
+            BlockId = dto.Id;
             BedId = 0;
             Height = dto.Height;
             TiltAngle = dto.TiltAngle;
@@ -52,7 +49,7 @@ namespace BeddestDAL
 
         public BlockDTO ToDto()
         {
-            return new BlockDTO(Id, Height, TiltAngle, HardnessLevel, Hardness);
+            return new BlockDTO(BlockId, Height, TiltAngle, HardnessLevel, Hardness);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BeddestDAL
     {
         public static bool BlockRegistered(int blockId)
         {
-            Blocks blockFound;
+            Block blockFound;
             using (var context = new BeddestModel())
             {
                 context.Blocks.Load();
@@ -21,13 +21,13 @@ namespace BeddestDAL
             return blockFound != null;
         }
 
-        public static void AddBlocks(Blocks[] blocks)
+        public static void AddBlocks(Block[] blocks)
         {
-            foreach (Blocks block in blocks)
-            {
-                if (BlockRegistered(block.Id))
-                    return;
-            }
+            //foreach (Blocks block in blocks)
+            //{
+            //    if (BlockRegistered(block.Id))
+            //        return;
+            //}
             using (var context = new BeddestModel())
             {
                 context.Blocks.Load();
@@ -36,9 +36,9 @@ namespace BeddestDAL
             }
         }
 
-        public static List<Blocks> GetBlocks(int bedId)
+        public static List<Block> GetBlocks(int bedId)
         {
-            List<Blocks> result;
+            List<Block> result;
             using (var context = new BeddestModel())
             {
                 context.Blocks.Load();
@@ -49,14 +49,14 @@ namespace BeddestDAL
             return result;
         }
 
-        public static Blocks GetBlock(int id)
+        public static Block GetBlock(int id)
         {
-            Blocks result;
+            Block result;
             using (var context = new BeddestModel())
             {
                 context.Blocks.Load();
                 result = (from block in context.Blocks
-                          where block.Id == id
+                          where block.BlockId == id
                           select block).FirstOrDefault();
             }
             return result;
@@ -76,6 +76,20 @@ namespace BeddestDAL
                     blockToChange.Hardness = hardness;
                     context.SaveChanges();
                 }
+            }
+        }
+
+        public static void RemoveBlocks(int bedId)
+        {
+            using (var context = new BeddestModel())
+            {
+                context.Blocks.Load();
+                List<Block> blocksToRemove = (from block in context.Blocks
+                                              where block.BedId == bedId
+                                              select block).ToList();
+
+                context.Blocks.RemoveRange(blocksToRemove);
+                context.SaveChanges();
             }
         }
     }

@@ -5,12 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BeddestWebApi.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class BedController : ApiController
     {
+        [HttpGet]
+        public List<BedDTO> GetAllBeds()
+        {
+            List<BedDTO> result = CtrlToDal.GetAllBeds();
+            return result;
+        }
+
         [HttpGet]
         public List<BedDTO> GetBeds(int userId)
         {
@@ -27,27 +37,30 @@ namespace BeddestWebApi.Controllers
 
         [HttpGet]
         // [HttpPost]
-        public BedDTO AddBed(int userId, int bedId, int blockId1, int blockId2, int blockId3, int blockId4)
+        public async Task AddBed(int userId, int hardness1 = 3, int hardness2 = 3, int hardness3 = 3, int hardness4 = 3)
         {
-            int[] blockIds = { blockId1, blockId2, blockId3, blockId4 };
-            int[] hardnessLevels = { 3, 3, 3, 3 };
-            CtrlToDal.AddBed(userId, bedId, blockIds, hardnessLevels);
-            BedDTO result = CtrlToDal.GetBed(bedId);
-            return result;
+            int[] hardnessLevels = { hardness1, hardness2, hardness3, hardness4 };
+            await CtrlToDal.AddBed(userId, hardnessLevels);
+        }
+
+        [HttpGet]
+        public async Task RemoveBed(int bedId)
+        {
+            await CtrlToDal.RemoveBed(bedId);
         }
 
         [HttpGet]
         // [HttpPut]
-        public void SetTemperature(int bedId, int newTemp)
+        public async Task SetTemperature(int bedId, int newTemp)
         {
-            CtrlToDal.SetTemp(bedId, newTemp);
+            await CtrlToDal.SetTemp(bedId, newTemp);
         }
 
         [HttpGet]
         // [HttpPut]
-        public void SetHeatingTime(int bedId, int newTime)
+        public async Task SetHeatingTime(int bedId, int newTime)
         {
-            CtrlToDal.SetHeatingTime(bedId, newTime);
+            await CtrlToDal.SetHeatingTime(bedId, newTime);
         }
     }
 }

@@ -7,9 +7,9 @@ namespace BeddestDAL
     using System.Data.Entity.Spatial;
     using Models;
 
-    public partial class Modes
+    public partial class Mode
     {
-        public int Id { get; set; }
+        public int ModeId { get; set; }
 
         public int UserId { get; set; }
 
@@ -33,10 +33,14 @@ namespace BeddestDAL
 
         public int OtherHardness { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        
-        public Modes(int userId, string name, int headHeight, int headTilt, int headHardness, int legHeight, int legTilt, int legHardness, int otherHeight, int otherHardness)
+        public Mode()
+        {
+
+        }
+
+        public Mode(int userId, string name, int headHeight, int headTilt, int headHardness, int legHeight, int legTilt, int legHardness, int otherHeight, int otherHardness)
         {
             UserId = userId;
             Name = name;
@@ -52,7 +56,7 @@ namespace BeddestDAL
 
         public ModeDTO ToDto()
         {
-            return new ModeDTO(Id, Name);
+            return new ModeDTO(ModeId, Name);
         }
     }
 }

@@ -7,34 +7,9 @@ namespace BeddestDAL
     using System.Data.Entity.Spatial;
     using Models;
 
-    public partial class Users
+    public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
-        {
-            Beds = new HashSet<Beds>();
-            Modes = new HashSet<Modes>();
-        }
-
-        public UserDTO ToDto()
-        {
-            return new UserDTO(Id, Name);
-        }
-
-        public Users(string userName, string password)
-        {
-            Name = userName;
-            Password = password;
-        }
-
-        public Users(int id, string userName, string password)
-        {
-            Id = id;
-            Name = userName;
-            Password = password;
-        }
-
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -43,11 +18,32 @@ namespace BeddestDAL
         [Required]
         [StringLength(20)]
         public string Password { get; set; }
+        
+        public virtual List<Bed> Beds { get; set; }
+        
+        public virtual List<Mode> Modes { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Beds> Beds { get; set; }
+        public User()
+        {
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Modes> Modes { get; set; }
+        }
+        
+        public UserDTO ToDto()
+        {
+            return new UserDTO(UserId, Name);
+        }
+
+        public User(string userName, string password)
+        {
+            Name = userName;
+            Password = password;
+        }
+
+        public User(int id, string userName, string password)
+        {
+            UserId = id;
+            Name = userName;
+            Password = password;
+        }
     }
 }

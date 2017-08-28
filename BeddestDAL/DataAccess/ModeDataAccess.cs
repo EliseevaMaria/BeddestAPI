@@ -10,9 +10,9 @@ namespace BeddestDAL
 {
     public class ModeDataAccess
     {
-        public static List<Modes> GetModes(int userId)
+        public static List<Mode> GetModes(int userId)
         {
-            List<Modes> result;
+            List<Mode> result;
             using (var context = new BeddestModel())
             {
                 context.Modes.Load();
@@ -23,20 +23,20 @@ namespace BeddestDAL
             return result;
         }
 
-        public static Modes GetMode(int modeId)
+        public static Mode GetMode(int modeId)
         {
-            Modes result;
+            Mode result;
             using (var context = new BeddestModel())
             {
                 context.Beds.Load();
                 result = (from mode in context.Modes
-                          where mode.Id == modeId
+                          where mode.ModeId == modeId
                           select mode).FirstOrDefault();
             }
             return result;
         }
 
-        public static void CreateMode(Modes newMode)
+        public static void CreateMode(Mode newMode)
         {
             using (var context = new BeddestModel())
             {

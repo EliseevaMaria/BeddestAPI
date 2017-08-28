@@ -55,15 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\BedDataAccess.cs" />
     <Compile Include="DBModels\BeddestModel.cs" />
     <Compile Include="DBModels\Beds.cs" />
     <Compile Include="DBModels\Blocks.cs" />
+    <Compile Include="DataAccess\BedDataAccess.cs" />
     <Compile Include="DataAccess\BlockDataAccess.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="DataAccess\DeviceDataAccess.cs" />
-    <Compile Include="DBModels\Devices.cs" />
     <Compile Include="DataAccess\ModeDataAccess.cs" />
+    <Compile Include="DBModels\Devices.cs" />
+    <Compile Include="Migrations\201705041028382_Migration1.cs" />
+    <Compile Include="Migrations\201705041028382_Migration1.Designer.cs">
+      <DependentUpon>201705041028382_Migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041211445_DeviceKeyAdding.cs" />
+    <Compile Include="Migrations\201705041211445_DeviceKeyAdding.Designer.cs">
+      <DependentUpon>201705041211445_DeviceKeyAdding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DBModels\Modes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\UserDataAccess.cs" />
@@ -83,6 +92,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705041028382_Migration1.resx">
+      <DependentUpon>201705041028382_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041211445_DeviceKeyAdding.resx">
+      <DependentUpon>201705041211445_DeviceKeyAdding.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BeddestWebApi.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class ModeController : ApiController
     {
         [HttpGet]
@@ -20,16 +23,23 @@ namespace BeddestWebApi.Controllers
 
         [HttpGet]
         // [HttpPost]
-        public void AddMode(int userId, int bedId, string name)
+        public async Task AddMode(int userId, int bedId, string name)
         {
-            CtrlToDal.AddModeForIotAsync(userId, bedId, name);
+            await CtrlToDal.AddModeForIotAsync(userId, bedId, name);
         }
 
         [HttpGet]
         // [HttpPut]
-        public void SelectMode(int modeId, int bedId)
+        public async Task SelectMode(int modeId, int bedId)
         {
-            CtrlToDal.SelectModeForIotAsync(modeId, bedId);
+            await CtrlToDal.SelectModeForIotAsync(modeId, bedId);
+        }
+
+        [HttpGet]
+        // [HttpPut]
+        public void SetModeForDb(int modeId, int bedId, int head, int legs)
+        {
+            CtrlToDal.SelectModeForDB(modeId, bedId, head, legs);
         }
     }
 }

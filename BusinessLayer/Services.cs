@@ -9,7 +9,7 @@ namespace BusinessLayer
 {
     public static class Services
     {
-        public static Modes CreateMode(int userId, int head, int legs, string name, Blocks[] blocks)
+        public static Mode CreateMode(int userId, int head, int legs, string name, Block[] blocks)
         {
             int avgHeight = 0, avgHardness = 0;
             for (int i = 0; i < blocks.Length; i++)
@@ -24,7 +24,7 @@ namespace BusinessLayer
             avgHardness /= (blocks.Length / 2);
             avgHeight /= (blocks.Length / 2);
 
-            Modes newMode = new Modes(userId, name,
+            Mode newMode = new Mode(userId, name,
                 blocks[head].Height, blocks[head].TiltAngle, blocks[head].Hardness,
                 blocks[legs].Height, blocks[legs].TiltAngle, blocks[legs].Hardness,
                 avgHeight != 0 ? avgHeight : 1, avgHardness != 0 ? avgHardness : 1);
