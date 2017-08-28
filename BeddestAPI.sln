@@ -1,14 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeddestApi2", "BeddestAPI\BeddestApi2.csproj", "{49830EEB-646E-4F0B-8ADD-9B268523D06B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AD91F006-1660-4EC5-A3A4-CCC932AEA6F4} = {AD91F006-1660-4EC5-A3A4-CCC932AEA6F4}
-		{B834D599-A842-4840-A2A3-844F7DBB8935} = {B834D599-A842-4840-A2A3-844F7DBB8935}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeddestDAL", "BeddestDAL\BeddestDAL.csproj", "{AD91F006-1660-4EC5-A3A4-CCC932AEA6F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{B834D599-A842-4840-A2A3-844F7DBB8935}"
@@ -25,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{49830EEB-646E-4F0B-8ADD-9B268523D06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49830EEB-646E-4F0B-8ADD-9B268523D06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49830EEB-646E-4F0B-8ADD-9B268523D06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49830EEB-646E-4F0B-8ADD-9B268523D06B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD91F006-1660-4EC5-A3A4-CCC932AEA6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD91F006-1660-4EC5-A3A4-CCC932AEA6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD91F006-1660-4EC5-A3A4-CCC932AEA6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,5 +42,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D1325FF-6534-4667-B8A6-E448F87F8480}
 	EndGlobalSection
 EndGlobal
