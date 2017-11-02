@@ -74,28 +74,28 @@ namespace IotMessagesReceiver
         }
 
 
-        /*
-        public static void Start()
-        {
-            serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
-        }
-        public static async Task SendAsync(bool send, string commandName, object objToSend)
-        {
-            try
-            {
-                if (!send)
-                    return;
+        
+        //public static void Start()
+        //{
+        //    serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
+        //}
+        //public static async Task SendAsync(bool send, string commandName, object objToSend)
+        //{
+        //    try
+        //    {
+        //        if (!send)
+        //            return;
 
-                Command command = new Command(commandName, JsonConvert.SerializeObject(objToSend));
-                string messageString = JsonConvert.SerializeObject(command);
+        //        Command command = new Command(commandName, JsonConvert.SerializeObject(objToSend));
+        //        string messageString = JsonConvert.SerializeObject(command);
 
-                var message = new Message(Encoding.ASCII.GetBytes(messageString));
-                Task.Factory.StartNew(() =>
-                {
-                    serviceClient.SendAsync("myFirstDevice", message);
-                });
-            }
-            catch { }
-        }*/
+        //        var message = new Message(Encoding.ASCII.GetBytes(messageString));
+        //        Task.Factory.StartNew(() =>
+        //        {
+        //            serviceClient.SendAsync("myFirstDevice", message);
+        //        });
+        //    }
+        //    catch { }
+        //}
     }
 }

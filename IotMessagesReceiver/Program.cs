@@ -1,35 +1,26 @@
-﻿using BeddestDAL;
-using Microsoft.Azure.Devices;
-using Microsoft.ServiceBus.Messaging;
-using Models;
-using Newtonsoft.Json;
+﻿using Microsoft.Azure.Devices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace IotMessagesReceiver
 {
     public class Program
     {
-        /*static string iotHubD2cEndpoint = "messages/events";
-        static EventHubClient eventHubClient;
+        //static string iotHubD2cEndpoint = "messages/events";
+        //static EventHubClient eventHubClient;
 
-        private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
-        {
-            var eventHubReceiver = eventHubClient.GetDefaultConsumerGroup().CreateReceiver(partition, DateTime.UtcNow);
-            while (true)
-            {
-                if (ct.IsCancellationRequested) break;
-                EventData eventData = await eventHubReceiver.ReceiveAsync();
-                if (eventData == null) continue;
+        //private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
+        //{
+        //    var eventHubReceiver = eventHubClient.GetDefaultConsumerGroup().CreateReceiver(partition, DateTime.UtcNow);
+        //    while (true)
+        //    {
+        //        if (ct.IsCancellationRequested) break;
+        //        EventData eventData = await eventHubReceiver.ReceiveAsync();
+        //        if (eventData == null) continue;
 
-                string data = Encoding.UTF8.GetString(eventData.GetBytes());
-                Console.WriteLine("Message received. Partition: {0} Data: '{1}'", partition, data);
-            }
-        }*/
+        //        string data = Encoding.UTF8.GetString(eventData.GetBytes());
+        //        Console.WriteLine("Message received. Partition: {0} Data: '{1}'", partition, data);
+        //    }
+        //}
 
         public static void Main(string[] args)
         {
@@ -43,54 +34,54 @@ namespace IotMessagesReceiver
 
             //Transfer.ReceiveD2CAsync().Wait();
 
-            /*if (Transfer.eventHubClient == null)
-                Transfer.eventHubClient = EventHubClient.CreateFromConnectionString(Transfer.connectionString, Transfer.iotHubD2cEndpoint);
-            var d2cPartitions = Transfer.eventHubClient.GetRuntimeInformation().PartitionIds;
+            //if (Transfer.eventHubClient == null)
+            //    Transfer.eventHubClient = EventHubClient.CreateFromConnectionString(Transfer.connectionString, Transfer.iotHubD2cEndpoint);
+            //var d2cPartitions = Transfer.eventHubClient.GetRuntimeInformation().PartitionIds;
 
-            var eventHubReceivers = new List<EventHubReceiver>();
-            foreach (string partition in d2cPartitions)
-            {
-                eventHubReceivers.Add(Transfer.eventHubClient.GetDefaultConsumerGroup().CreateReceiver(partition, DateTime.UtcNow));
-            }
-            Console.WriteLine("we");
-            Console.ReadLine();
+            //var eventHubReceivers = new List<EventHubReceiver>();
+            //foreach (string partition in d2cPartitions)
+            //{
+            //    eventHubReceivers.Add(Transfer.eventHubClient.GetDefaultConsumerGroup().CreateReceiver(partition, DateTime.UtcNow));
+            //}
+            //Console.WriteLine("we");
+            //Console.ReadLine();
 
-            var tasks = new List<Task>();
-            foreach (var eventHubReceiver in eventHubReceivers)
-            {
-                tasks.Add(Transfer.ReceiveMessage(eventHubReceiver));
-            }
-            Task.WaitAny(tasks.ToArray());
+            //var tasks = new List<Task>();
+            //foreach (var eventHubReceiver in eventHubReceivers)
+            //{
+            //    tasks.Add(Transfer.ReceiveMessage(eventHubReceiver));
+            //}
+            //Task.WaitAny(tasks.ToArray());
 
-            tasks = new List<Task>();
-            foreach (var eventHubReceiver in eventHubReceivers)
-            {
-                tasks.Add(Transfer.ReceiveMessage(eventHubReceiver));
-            }
-            Task.WaitAny(tasks.ToArray());
+            //tasks = new List<Task>();
+            //foreach (var eventHubReceiver in eventHubReceivers)
+            //{
+            //    tasks.Add(Transfer.ReceiveMessage(eventHubReceiver));
+            //}
+            //Task.WaitAny(tasks.ToArray());
 
 
 
-            /*Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
-            eventHubClient = EventHubClient.CreateFromConnectionString(Transfer.connectionString, iotHubD2cEndpoint);
+            //Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
+            //eventHubClient = EventHubClient.CreateFromConnectionString(Transfer.connectionString, iotHubD2cEndpoint);
 
-            var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
+            //var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
 
-            CancellationTokenSource cts = new CancellationTokenSource();
+            //CancellationTokenSource cts = new CancellationTokenSource();
 
-            Console.CancelKeyPress += (s, e) =>
-            {
-                e.Cancel = true;
-                cts.Cancel();
-                Console.WriteLine("Exiting...");
-            };
+            //Console.CancelKeyPress += (s, e) =>
+            //{
+            //    e.Cancel = true;
+            //    cts.Cancel();
+            //    Console.WriteLine("Exiting...");
+            //};
 
-            var tasks = new List<Task>();
-            foreach (string partition in d2cPartitions)
-            {
-                tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
-            }
-            Task.WaitAll(tasks.ToArray());*/
+            //var tasks = new List<Task>();
+            //foreach (string partition in d2cPartitions)
+            //{
+            //    tasks.Add(ReceiveMessagesFromDeviceAsync(partition, cts.Token));
+            //}
+            //Task.WaitAll(tasks.ToArray());
 
         }
         //struct Command

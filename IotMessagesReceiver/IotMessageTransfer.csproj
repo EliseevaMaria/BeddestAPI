@@ -84,10 +84,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BeddestDAL\BeddestDAL.csproj">
-      <Project>{ad91f006-1660-4ec5-a3a4-ccc932aea6f4}</Project>
-      <Name>BeddestDAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{b834d599-a842-4840-a2a3-844f7dbb8935}</Project>
       <Name>Models</Name>
